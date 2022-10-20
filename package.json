@@ -16,6 +16,11 @@
     "express-ejs-layouts": "^2.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "cross-env": "^7.0.3",
+    "laravel-mix": "^6.0.49",
+    "nodemon": "^2.0.19",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.54.8",
+    "sass-loader": "^12.1.0"
   }
 }
