@@ -7,8 +7,7 @@
   \*****************************/
 /***/ (() => {
 
-alert('hello darshan');
-console.log('Hello darshan');
+
 
 /***/ }),
 
