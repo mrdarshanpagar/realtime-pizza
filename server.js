@@ -41,6 +41,14 @@ app.use(session({
 app.use(flash())
 // Assets
 app.use(express.static('public'))
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+
+// Global middleware
+app.use((req, res, next)=>{
+    res.locals.session = req.session
+    next()
+})
 
 initRoutes(app)
 
