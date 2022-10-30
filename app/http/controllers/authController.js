@@ -6,6 +6,10 @@ const saltRounds = 10
 
 function authController(){
 
+    const _getRedirectUrl = req =>{
+        return req.user.role === 'admin' ? '/admin/orders' : '/customers/orders'
+    }
+
     return {
         
         login: function(req, res){
@@ -53,7 +57,7 @@ function authController(){
             
             user.save().then((user)=>{
                 // LogIn user
-                res.redirect('/')
+                res.redirect('/login')
 
             }).catch(error => {
                 req.flash('error', 'Something went wrong')
@@ -70,10 +74,8 @@ function authController(){
         }),
 
         logout: function(req, res, next){
-            req.logout(function(error){
-                if(error) return next(error)
-                res.redirect('/login')
-            })
+            req.logout()
+            res.redirect('/login')
         }
     
 
