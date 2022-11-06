@@ -40,12 +40,30 @@ function orderController(){
                     null, 
                     {sort: {'createdAt': -1}}
                 )
+
                 res.header('Cache-Control', 'no-store')
+
                 res.render('customers/orders', {orders: orders, moment: moment})
             }catch(error){
                 req.flash('error', 'Something went wrong')
                 res.redirect('/')
             }
+        },
+
+        showStatus: async function(req, res){
+            // First Authorize user
+            /* User should not access the other user's order status by just changing,
+               the :id params in browser
+            */
+
+            const singleOrder = await Order.findById(req.params.id)  
+
+            if( req.user._id.toString() === singleOrder.customerId.toString()){
+                return res.render('customers/singleOrder', {order: singleOrder})
+            }else{
+                return res.redirect('/')
+            }
+            
         }
     }
 }

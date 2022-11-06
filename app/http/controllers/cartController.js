@@ -9,7 +9,7 @@ function cartController(){
         },
 
         update: function(req, res){
-
+            console.log(req.body)
             // let cart = {
             //     items: {
             //         pizzaId: { item: pizzaObject, qty:0 },
@@ -47,6 +47,14 @@ function cartController(){
                 cart.totalPrice = cart.totalPrice + req.body.price
             }
             
+            res.json({totalQty: req.session.cart.totalQty})
+        },
+
+        delete: function(req, res){
+            let cart = req.session.cart
+            cart.totalQty = cart.totalQty  - cart.items[req.body._id].qty
+            cart.totalPrice = cart.totalPrice - cart.items[req.body._id].qty * req.body.price
+            delete cart.items[req.body._id]
             res.json({totalQty: req.session.cart.totalQty})
         }
 

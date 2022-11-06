@@ -12,8 +12,22 @@
 </section>
 
 <section class="menu container mx-auto py-8">
-  <h1 class="text-xl font-bold mb-8">All Pizzas</h1>
-  <div class="grid grid-cols-4 col-gap-12 row-gap-16">
+  <div class="flex items-center justify-between mb-16">
+    <h1 class="text-2xl font-bold">All Pizzas</h1>
+    <% if(user){
+      %>
+      <% if(user.role === 'admin'){
+        %>
+        <div class="mr-20">
+          <a href="/admin/create-menu" class="inline-block btn-primary cursor-pointer px-6 py-2 rounded-full text-white font-bold">
+          ADD NEW ITEM</a>
+        </div>
+        <%
+      } %>
+      <%
+    }%>
+  </div>
+  <div class="grid grid-cols-4 gap-x-12 gap-y-16">
 
     <% menus.forEach(function(menu){
 
@@ -29,6 +43,19 @@
               <span>+</span>
               <span class="ml-4">Add</span>
             </button>
+            <% if(user){
+              %>
+              <% if(user.role === 'admin'){
+                %>
+                <span>
+                  <form method="POST" action="/admin/delete-menu-item/<%= menu.id %>?_method=DELETE" >
+                    <button type="submit" class="btn-primary bg-orange-600 px-4 py-1.5 rounded-full text-white font-bold">Delete</button>
+                  </form>
+                </span>
+                <%
+              } %>
+              <%
+            }%>
           </div>
         </div>
       </div>

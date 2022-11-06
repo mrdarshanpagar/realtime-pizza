@@ -1,5 +1,5 @@
 <section class="cart py-16">
-    <% if(session.cart){
+    <% if(session.cart && JSON.stringify(session.cart.items) != '{}'){
 
         %>
         <div  class="order container mx-auto w-1/2">
@@ -18,6 +18,9 @@
                         </div>
                         <span class="flex-1"><%= itemArr.qty %> Pcs</span>
                         <span class="font-bold text-lg"><span>₹</span><%= itemArr.item.price * itemArr.qty %></span>
+                        <div class="ml-12">
+                            <button data-food="<%= JSON.stringify(itemArr.item) %>" class="delete-from-cart btn-primary bg-orange-600 px-4 py-1 rounded-full text-white font-bold">Delete</button>
+                        </div>
                     </div>
                     <%
                 }%>
