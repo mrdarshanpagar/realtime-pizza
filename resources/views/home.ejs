@@ -1,8 +1,8 @@
 <section class="hero py-16">
   <div class="container mx-auto flex items-center justify-between">
     <div class="w-1/2">
-      <h6 class="text-lg"><em>Are you hungry?</em></h6>
-      <h1 class="text-6xl font-bold">Don't wait !</h1>
+      <h6 class="text-lg"><em></em></h6>
+      <h1 class="leading-sung text-5xl font-bold">It's Not Just A Pizza, It's<br> An <span class="primary-color">Experience</span></h1>
       <button type="submit" class="btn-primary bg-orange-600 px-6 py-2 rounded-full text-white font-bold mt-4">Order Now</button>
     </div>
     <div class="w-1/2">
@@ -13,7 +13,7 @@
 
 <section class="menu container mx-auto py-8">
   <div class="flex items-center justify-between mb-16">
-    <h1 class="text-2xl font-bold">All Pizzas</h1>
+    <h1 class="text-2xl font-bold">Menu</h1>
     <% if(user){
       %>
       <% if(user.role === 'admin'){
@@ -33,6 +33,17 @@
 
       %>
       <div class="w-64 mb-16">
+        <% if(user){
+          %>
+          <% if(user.role === 'admin'){
+            %>
+            <form method="GET" action="/admin/edit-menu-item/<%= menu.id %>" >
+              <button title="Edit item" type="submit" class="btn-primary bg-orange-600 px-4 py-1.5 rounded-full text-white font-bold"><i class="fa-sharp fa-solid fa-pen-to-square"></i></button>
+            </form>
+            <%
+          } %>
+          <%
+        }%>
         <img class="h-40 mb-4 mx-auto" src="/img/<%= menu.image %>" alt="pizza image">
         <div class="text-center">
           <h2 class="mb-4 text-lg"><%= menu.name %></h2>
@@ -49,7 +60,7 @@
                 %>
                 <span>
                   <form method="POST" action="/admin/delete-menu-item/<%= menu.id %>?_method=DELETE" >
-                    <button type="submit" class="btn-primary bg-orange-600 px-4 py-1.5 rounded-full text-white font-bold">Delete</button>
+                    <button title="Delete item" type="submit" class="btn-primary bg-orange-600 px-4 py-1.5 rounded-full text-white font-bold">Delete</button>
                   </form>
                 </span>
                 <%

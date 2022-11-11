@@ -8,6 +8,7 @@ const statusController = require('../app/http/controllers/admin/statusController
 const guest = require('../app/http/middleware/guest')
 const auth = require('../app/http/middleware/auth')
 const adminAuth = require('../app/http/middleware/adminAuth')
+const fileUploader = require('../app/http/middleware/fileUploader')
 
 
 
@@ -54,6 +55,20 @@ function initRoutes(app){
     // Admin - add new food item page
 
     app.get('/admin/create-menu', adminAuth, homeController().addItemPage)
+
+    // Admin - Post new menu item
+
+    app.post('/admin/create-menu/add', adminAuth, fileUploader.single('picture'), homeController().postMenu)
+
+    // Admin - Edit menu item page
+
+    app.get('/admin/edit-menu-item/:id', adminAuth, homeController().editItemPage)
+
+    // Admin - PUT menu item
+
+    app.put('/admin/edit-menu-item/:id', adminAuth, fileUploader.single('picture'), homeController().putMenu)
+
+
 
 }
 

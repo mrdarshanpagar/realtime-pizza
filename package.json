@@ -25,6 +25,7 @@
     "method-override": "^3.0.0",
     "moment": "^2.29.4",
     "mongoose": "^6.6.6",
+    "multer": "^1.4.5-lts.1",
     "noty": "^3.2.0-beta-deprecated",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",

@@ -1,7 +1,7 @@
 <section class="login flex justify-center pt-8">
 
     <div class="w-full max-w-xs">
-        <form action="/admin/create-menu/add" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-2">
+        <form action="/admin/edit-menu-item/<%= item.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-2">
             
             <% if(messages.error){
                 %>
@@ -14,7 +14,7 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                     Name
                 </label>
-                <input name="name" value="<%= messages.name %>" required
+                <input name="name" value="<%= item.name %>" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="name" type="text" placeholder="Enter item name">
             </div>
@@ -22,7 +22,7 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
                     Price
                 </label>
-                <input name="price" value="<%= messages.price %>" required
+                <input name="price" value="<%= item.price %>" required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="price" type="number" placeholder="Enter item price">
             </div>
@@ -32,9 +32,27 @@
                     Size
                 </label>
                 <select name="size" id="size" required class=" bg-gray-50 border border-gray-300 text-gray-900 bg-white text-sm rounded-lg block w-full p-2.5 hover:border-gray-500 ">
-                    <option value="small" selected>small</option>
-                    <option value="medium">medium</option>
-                    <option value="large">large</option>
+                    <% if(item.size === 'small'){
+                        %>
+                        <option value="small" selected>small</option>
+                        <option value="medium">medium</option>
+                        <option value="large">large</option>
+                        <%
+                    }else if(item.size === 'medium'){
+                        %>
+                        <option value="small">small</option>
+                        <option value="medium" selected>medium</option>
+                        <option value="large">large</option>
+                        <%
+                    }else{
+                        %>
+                        <option value="small">small</option>
+                        <option value="medium">medium</option>
+                        <option value="large" selected>large</option>
+                        <%
+                    }
+                    
+                    %>
                 </select>
             </div>
             <div class="mb-6 file-upload">

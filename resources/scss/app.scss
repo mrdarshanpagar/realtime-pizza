@@ -31,6 +31,7 @@ section.hero{
     background: $secondary;
 }
 
+
 .add-to-cart{
     border: 2px solid $primary;
     color: $primary;
@@ -49,6 +50,10 @@ section.hero{
     &:hover{
         background: $primary-hover;
     }
+}
+
+.primary-color{
+    color: $primary;
 }
 
 section.cart{
@@ -196,4 +201,19 @@ section.status{
     float: right;
     font-size: 14px;
     margin-top: 8px;
+}
+
+.file-upload input::file-selector-button{
+    background: $primary;
+    transition: $smooth;
+    &:hover{
+        background: $primary-hover;
+    }
+
+    border: none;
+    padding: 0.6rem 1rem;
+    color: $pure;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-right: 0.5rem;
 }
