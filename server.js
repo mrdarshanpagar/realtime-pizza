@@ -48,7 +48,7 @@ let mongoStore = MongoDbStore.create({
 
 // Session config
 app.use(session({
-    secret: process.env.COOKIE_SECRET,
+    secret: "theencryptionkey",
     resave: false,
     store: mongoStore,
     saveUninitialized: false,

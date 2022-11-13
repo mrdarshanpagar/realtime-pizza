@@ -61,7 +61,7 @@ function homeController(){
             const {name, price, size} = req.body;
             const item = await Menu.findById(req.params.id)
             item.name = name
-            item.image = req.file.filename
+            item.image = (req.file ? req.file.filename : item.image)
             item.price = price
             item.size = size
 
