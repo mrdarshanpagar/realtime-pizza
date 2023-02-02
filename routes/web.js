@@ -13,59 +13,37 @@ const fileUploader = require('../app/http/middleware/fileUploader')
 
 
 function initRoutes(app){
-    app.get('/', homeController().index)
-    
-    app.get('/login', guest, authController().login)
-
-    app.post('/login', authController().postLogin)
-    
-    app.get('/register', guest, authController().register)
-
-    app.post('/register', authController().postRegister)
-
-    app.post('/logout', authController().logout)
-
-    app.get('/cart', cartController().index)
-
-    app.post('/update-cart', cartController().update)
-
-    app.delete('/delete-cart', cartController().delete)
 
     // Customer routes
 
+    app.get('/', homeController().index)
+    app.get('/login', guest, authController().login)
+    app.post('/login', authController().postLogin)
+    app.get('/register', guest, authController().register)
+    app.post('/register', authController().postRegister)
+    app.post('/logout', authController().logout)
+    app.get('/cart', cartController().index)
+    app.post('/update-cart', cartController().update)
+    app.delete('/delete-cart', cartController().delete)
     app.post('/orders', auth, orderController().storeOrder)
-
     app.get('/customers/orders', auth, orderController().index)
-
     app.get('/customers/orders/:id', auth, orderController().showStatus)
 
 
     // Admin routes
 
     app.get('/admin/orders', adminAuth, AdminOrderController().index)
-
     // Admin - order status controller
-
     app.post('/admin/order/status', adminAuth, statusController().update)
-
     // Admin - delete item from menu
-
     app.delete('/admin/delete-menu-item/:id', adminAuth, homeController().delete)
-
     // Admin - add new food item page
-
     app.get('/admin/create-menu', adminAuth, homeController().addItemPage)
-
     // Admin - Post new menu item
-
     app.post('/admin/create-menu/add', adminAuth, fileUploader.single('picture'), homeController().postMenu)
-
     // Admin - Edit menu item page
-
     app.get('/admin/edit-menu-item/:id', adminAuth, homeController().editItemPage)
-
     // Admin - PUT menu item
-
     app.put('/admin/edit-menu-item/:id', adminAuth, fileUploader.single('picture'), homeController().putMenu)
 
 
